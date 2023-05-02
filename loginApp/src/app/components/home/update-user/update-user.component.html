@@ -1,0 +1,13 @@
+<div class="update-user-container">
+
+    <div class="w100" fxLayoutAlign="end center">
+        <mat-icon fxFlex="10" (click)="close()">close</mat-icon>
+    </div>
+
+    <h1>Update user</h1>
+
+    <div fxLayoutAlign="center center" class="form-container">
+        <app-user-form btn="SAVE" (buttonClick)="update($event)"></app-user-form>
+    </div>
+
+</div>

@@ -1,0 +1,28 @@
+<form [formGroup]="loginForm" class="w100" fxLayout="column" fxLayoutAlign="center center"
+    (ngSubmit)="onSubmit(loginForm.value)">
+
+    <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Usename</mat-label>
+        <input autocomplete="off" type="text" placeholder="Enter username..." formControlName="username" name="name"
+            matInput />
+        <mat-error class="helper-text red-text">
+            <span *ngIf="username?.errors?.['required']">Username is required.</span>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" floatLabel="always">
+        <mat-label>Password</mat-label>
+        <input class="mt0" [type]="hide ? 'password' : 'text'" name="authPassword" formControlName="password"
+            placeholder="Enter password..." matInput autocomplete="on" />
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error class="helper-text red-text">
+            <span *ngIf="password?.errors?.['required']">Password is required.</span>
+        </mat-error>
+    </mat-form-field>
+
+    <button class="mt30" [disabled]="loginForm.invalid" mat-raised-button color="primary">{{btn}}</button>
+
+</form>

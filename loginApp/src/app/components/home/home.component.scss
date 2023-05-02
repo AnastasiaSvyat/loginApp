@@ -1,0 +1,19 @@
+.home-container {
+    height: 90vh;
+
+    nav {
+        background-color: rgb(212, 253, 247);
+
+        mat-icon {
+            cursor: pointer;
+        }
+    }
+
+    main {
+        font-size: 40px;
+        font-weight: 100;
+        color: white;
+        text-align: center;
+        line-height: 1;
+    }
+}
