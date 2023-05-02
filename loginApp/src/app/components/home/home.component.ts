@@ -20,12 +20,20 @@ export class HomeComponent {
     private dialog: MatDialog,
     private toastr: ToastrService,
     private router: Router
-  ) { }
+  ) { 
+    this.getCurrentUser();
+  }
+
+  getCurrentUser(){
+    this.authenticationService.currentUserSubject$.subscribe((res) => {
+      this.currentUser = res;
+    });
+  }
 
   settingData() {
     const dialogRef = this.dialog.open(UpdateUserComponent, {
       width: '400px',
-      height: '400px',
+      height: '500px',
       data: { user: this.currentUser }
     });
     dialogRef.afterClosed().subscribe(result => {

@@ -16,6 +16,7 @@ export class AuthenticationService {
 
   constructor() {
     this.currentUserSubject$ = new BehaviorSubject<User>(
+      JSON.parse(localStorage.getItem("updateUser") || 'null') ??
       JSON.parse(localStorage.getItem("userLog") || 'null')
     );
     this.currentUser$ = this.currentUserSubject$.asObservable();
@@ -26,11 +27,13 @@ export class AuthenticationService {
   }
 
   login(user: User) {
-    let registeredData = localStorage.getItem("updateUser") ?? JSON.stringify(DefaultData);
-    if (JSON.stringify(user) === registeredData) {
+
+    let savedUser = JSON.parse(localStorage.getItem("updateUser") || 'null') ?? DefaultData;
+
+    if (user.password === savedUser.password && user.username === savedUser.username) {
       this._loading$.next(true)
       localStorage.setItem('userLog', JSON.stringify(user));
-      this.currentUserSubject$.next(user)
+      this.currentUserSubject$.next(savedUser)
       return of(true)
         .pipe(
           delay(2000),

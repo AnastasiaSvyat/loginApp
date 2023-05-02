@@ -11,7 +11,7 @@ export class UserService {
     private authenticationService: AuthenticationService
   ) { }
 
-  updateUser(user: User){
+  updateUser(user: User) {
     localStorage.setItem('updateUser', JSON.stringify(user));
     this.authenticationService.currentUserSubject$.next(user)
   }

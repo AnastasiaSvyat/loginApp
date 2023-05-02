@@ -5,7 +5,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { User } from 'src/app/shared/model/user';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subject } from 'rxjs';
-import { delay, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -38,11 +38,14 @@ export class LoginComponent implements OnInit {
   get username() { return this.loginForm.get('username'); }
   get password() { return this.loginForm.get('password'); }
 
-  login(loginData: User) {
-    this.authService.login(loginData)
+  login(user: User) {
+    this.authService.login({
+      username: user.username,
+      password: user.password
+    })
       .pipe(
         takeUntil(this.unsubscribe$))
-        .subscribe((res: any) => {
+        .subscribe((res) => {
         if (res) {
           this.router.navigate(['home'])
         } else {

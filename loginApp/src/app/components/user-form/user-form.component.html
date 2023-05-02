@@ -1,6 +1,11 @@
 <form [formGroup]="loginForm" class="w100" fxLayout="column" fxLayoutAlign="center center"
     (ngSubmit)="onSubmit(loginForm.value)">
 
+    <mat-form-field appearance="outline" floatLabel="always" *ngIf="btn == 'SAVE'">
+        <mat-label>Name</mat-label>
+        <input autocomplete="off" type="text" placeholder="Enter name..." formControlName="name" name="name" matInput />
+    </mat-form-field>
+
     <mat-form-field appearance="outline" floatLabel="always">
         <mat-label>Usename</mat-label>
         <input autocomplete="off" type="text" placeholder="Enter username..." formControlName="username" name="name"

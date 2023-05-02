@@ -16,7 +16,7 @@ export class UserFormComponent implements OnInit {
 
   loginForm!: FormGroup;
   currentUser: User = this.authenticationService.currentUserValue;
-  hide: Boolean = true;
+  hide: boolean = true;
 
   constructor(
     private authenticationService: AuthenticationService
@@ -26,6 +26,7 @@ export class UserFormComponent implements OnInit {
     this.loginForm = new FormGroup({
       username: new FormControl(this.currentUser?.username || null, [Validators.required]),
       password: new FormControl(this.currentUser?.password || null, [Validators.required]),
+      name: new FormControl(this.currentUser?.name || null),
     })
   }
 
